@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+	places
+{% endblock title %}
+
+{% block content  %}
+	
+
+
+	
+
+	<table class="table table-dark">
+  <thead>
+	    <tr>
+	    	<th scope="col" </th>
+	      <th scope="col">Name</th>
+	      <th scope="col">Address</th>
+	      <th scope="col">Open time</th>
+	      <th scope="col">Rating</th>
+	    </tr>
+  </thead>
+  	<tbody>
+  		{% for place in response.results %}
+  			<tr>
+		  <th scope="row">1</th>
+		  <td>{{place.name}}</td>
+		  <td>{{place.formatted_address}}</td>
+		  <td>@{{place.open_now}}</td>
+		  <td>{{place.rating}}</td>
+		</tr>
+		<tr>
+  		{% endfor %}
+		
+	 </tbody>
+	</table>
+	
+
+
+
+
+
+
+{% endblock content  %}
