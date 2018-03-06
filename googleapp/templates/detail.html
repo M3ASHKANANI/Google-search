@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-	places
+	Detail
 {% endblock title %}
 
 {% block content  %}
+
+
 
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline" action='{% url "search" %}' method="GET" >
@@ -27,43 +29,37 @@
 	      <th scope="col">Address</th>
 	      <th scope="col">Open time</th>
 	      <th scope="col">Rating</th>
-	      <th scope="col">Detail</th>
+	      <th scope="col">let</th>
+	      <th scope="col">lng</th>
+	      
 	    </tr>
   </thead>
   	<tbody>
-  		{% for place in response.results %}
   			<tr>
 		  <th scope="row">1</th>
-		  <td>{{place.name}}</td>
-		  <td>{{place.formatted_address}}</td>
-		  <td>{{place.opening_hours.open_now}}</td>
-		  <td>{{place.rating}}</td>
-		  <td>
-		  	<form action="{% url 'detail' %}" method="GET">
-		  	<input type="hidden" value="{{place.place_id}}" name="id" >
-		  	<input type="submit" value="Detail Page" class="btn btn-outline-warning">
-		  	</form>
-		  </td>
+		  <td>{{response.result.name}}</td>
+		  <td>{{response.result.formatted_address}}</td>
+		  <td>{{response.result.opening_hours.open_now}}</td>
+		  <td>{{response.result.rating}}</td>
+		  <td>{{response.result.geometry.location.lat}}</td>
+		  <td>{{response.result.geometry.location.lng}}</td>
+
+		  
+		
+
+
 		</tr>
 		<tr>
-  		{% endfor %}
 		
 	 </tbody>
 	</table>
-	
-{% if response.next_page_token %}
-<form action="{% url 'search' %}" method="GET">
-
-	<input type="hidden" value="{{response.next_page_token}}" name="pt" >
-	<input type="submit" Class="btn btn-outline-dark" value="Next Page!"> 
-
-
-</form>
-	
-{% endif %}
-
-
-
-
+<br><br>
+ <iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBJIlC-3DzK5m89WAflhcMcP1xiSTsGJcs
+    &q={{response.result.geometry.location.lat}},{{response.result.geometry.location.lng}}" allowfullscreen>
+</iframe>
 
 {% endblock content  %}

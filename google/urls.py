@@ -20,5 +20,5 @@ from googleapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("search/", views.place_search, name="search"),
-    
+    path("detail/", views.place_detail, name="detail"),    
 ]
