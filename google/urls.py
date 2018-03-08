@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path ,include
-from googleapp import views
-from twitterapp import tweet_search
+from googleapp.views import *
+from twitterapp.views import *
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("search/", views.place_search, name="search"),
-    path("detail/", views.place_detail, name="detail"), 
+    path("search/", place_search, name="search"),
+    path("detail/", place_detail, name="detail"), 
     path('accounts/', include('allauth.urls')),   
-    path("tweet_search/", views.place_tweet_search, name="tweet_search"),
+    path("tweet_search/", tweet_search, name="tweet_search"),
+    path("tweetpost/", tweet_post, name="tweetpost"),
 
 ]
